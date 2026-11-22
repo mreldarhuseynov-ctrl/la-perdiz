@@ -129,7 +129,7 @@ h2{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(32px,4.2vw,
 .dist span{font-size:13.5px;opacity:.75}
 .trio{margin-top:44px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .trio figure{margin:0}
-.trio img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:14px;display:block}
+.trio img,.trio video{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:14px;display:block}
 .trio figcaption{margin-top:12px;font-size:14px;opacity:.8}
 .glass-light{background:#fff;border:1px solid rgba(20,17,14,.1);border-radius:20px;box-shadow:0 24px 60px rgba(20,17,14,.08)}
 .calc{padding:28px;display:grid;gap:22px}
@@ -179,7 +179,7 @@ h2{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(32px,4.2vw,
   .scroll-hint{display:none}
   .two{grid-template-columns:1fr}
   .trio{grid-template-columns:1fr;gap:26px}
-  .trio img{aspect-ratio:16/11}
+  .trio img,.trio video{aspect-ratio:16/11}
 }
 @media (max-width:900px) and (orientation:portrait){
   /* the whole masterplan fitted to the screen width, markers and card below it */

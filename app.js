@@ -141,7 +141,7 @@ const VIEWS = [
   {id:"residence", fx:45, img:"residence", night:"residence-night", loop:"loop-residence"},
   {id:"club", fx:42, img:"club", night:"club-night", loop:"loop-club"},
   {id:"living", fx:50, img:"living", night:"living-night", loop:"loop-living"},
-  {id:"terrace", fx:62, img:"terrace", night:"terrace-night", loop:"loop-terrace"},
+  {id:"terrace", fx:62, img:"terrace", night:"terrace-night", loop:"loop-terrace", nightLoop:"loop-terrace-night"},
   {id:"night", fx:45, img:"night", loop:"loop-night"},
   {id:"court", fx:60, img:"court", night:"court-night", loop:"loop-court"},
   {id:"plan", fx:50, img:"plan", investOnly:true}
@@ -366,3 +366,15 @@ VIEWS.forEach(v => { new Image().src = src(v.img); if (v.night) new Image().src 
 setLang(T[pref] ? pref : "en");
 ambientOn();
 prefetch();
+
+/* living detail clips in the craft block: load and play only while on screen */
+(function(){
+  const vids = document.querySelectorAll("video.detal");
+  if (!vids.length || !("IntersectionObserver" in window)) return;
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    const v = e.target;
+    if (e.isIntersecting) { if (!v.src) v.src = `${VDIR}/${v.dataset.clip}.mp4`; v.play().catch(() => {}); }
+    else v.pause();
+  }), {threshold: .25});
+  vids.forEach(v => io.observe(v));
+})();
