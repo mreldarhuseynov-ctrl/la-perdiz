@@ -159,7 +159,8 @@ const $ = s => document.querySelector(s);
 const stage = $("#stage"), A = $("#layerA"), B = $("#layerB"), flight = $("#flight");
 let lang = "en", mode = "live", cur = "overview", isNight = false, busy = false, front = A, activePin = null;
 
-const src = name => `img/${name}.jpg`;
+const MV = "?m=21"; /* bump when images or clips change, so browsers drop cached copies */
+const src = name => `img/${name}.jpg${MV}`;
 const VDIR = matchMedia("(max-width:900px), (max-height:480px)").matches ? "video-m" : "video";
 const imgOf = (id, night) => { const v = VIEWS.find(v => v.id === id); return night && v.night ? v.night : v.img; };
 
@@ -174,8 +175,8 @@ function setLayer(name){
 /* clips are fetched whole and played from memory, so they work on any hosting and in Safari */
 const BLOBS = {};
 async function getClip(c){
-  if (!BLOBS[c]) { try { const r = await fetch(`${VDIR}/${c}.mp4`); if (r.ok) BLOBS[c] = URL.createObjectURL(new Blob([await r.blob()], {type:"video/mp4"})); } catch (e) {} }
-  return BLOBS[c] || `${VDIR}/${c}.mp4`;
+  if (!BLOBS[c]) { try { const r = await fetch(`${VDIR}/${c}.mp4${MV}`); if (r.ok) BLOBS[c] = URL.createObjectURL(new Blob([await r.blob()], {type:"video/mp4"})); } catch (e) {} }
+  return BLOBS[c] || `${VDIR}/${c}.mp4${MV}`;
 }
 /* warm up only the flights that can start from the current view */
 function prefetch(){
@@ -243,7 +244,7 @@ function ambientOn(){
   const v = VIEWS.find(v => v.id === cur);
   const name = isNight ? v.nightLoop : v.loop;
   if (!name) return ambientOff();
-  const url = `${VDIR}/${name}.mp4`;
+  const url = `${VDIR}/${name}.mp4${MV}`;
   ambient.style.objectPosition = fxOf(v.img);
   if (!ambient.src.endsWith(url)) ambient.src = url;
   const night = isNight;
@@ -373,7 +374,7 @@ prefetch();
   if (!vids.length || !("IntersectionObserver" in window)) return;
   const io = new IntersectionObserver(es => es.forEach(e => {
     const v = e.target;
-    if (e.isIntersecting) { if (!v.src) v.src = `${VDIR}/${v.dataset.clip}.mp4`; v.play().catch(() => {}); }
+    if (e.isIntersecting) { if (!v.src) v.src = `${VDIR}/${v.dataset.clip}.mp4${MV}`; v.play().catch(() => {}); }
     else v.pause();
   }), {threshold: .25});
   vids.forEach(v => io.observe(v));
