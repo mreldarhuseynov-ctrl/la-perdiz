@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>La Perdiz — Benahavís</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="La Perdiz — concept showcase of a hillside residence in Benahavís, Costa del Sol.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2715%27 fill=%27%23b8794a%27/%3E%3Ctext x=%2716%27 y=%2722%27 font-size=%2716%27 text-anchor=%27middle%27 fill=%27white%27 font-family=%27Georgia%27%3EP%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=19">
+</head>
+<body>
+
+<section class="stage" id="stage" aria-label="La Perdiz">
+  <div class="layer" id="layerA"></div>
+  <div class="layer" id="layerB"></div>
+  <video id="ambient" class="flight ambient" muted loop playsinline preload="none"></video>
+  <video id="flight" class="flight" muted playsinline preload="auto"></video>
+  <div class="shade"></div>
+
+  <header class="top">
+    <a class="brand" href="#stage"><span class="brand-name">LA PERDIZ</span><span class="brand-sub">Benahavís</span></a>
+    <div class="mode" role="tablist" aria-label="Mode">
+      <button class="mode-btn is-on" data-mode="live" data-i18n="modeLive" role="tab"></button>
+      <button class="mode-btn" data-mode="invest" data-i18n="modeInvest" role="tab"></button>
+    </div>
+    <div class="top-right">
+      <div class="lang" aria-label="Language">
+        <button data-lang="en">EN</button><button data-lang="es">ES</button><button data-lang="ru">RU</button>
+      </div>
+      <a class="cta" href="#contact" data-i18n="cta"></a>
+    </div>
+  </header>
+
+  <div class="caption">
+    <p class="caption-kicker" id="capKicker"></p>
+    <h1 class="caption-title" id="capTitle"></h1>
+    <p class="caption-text" id="capText"></p>
+    <button class="daynight" id="dayNight" hidden>
+      <span class="dn-dot"></span><span id="dayNightLabel"></span>
+    </button>
+  </div>
+
+  <aside class="facts glass" id="facts" hidden>
+    <p class="facts-head" data-i18n="factsHead"></p>
+    <dl id="factsList"></dl>
+    <p class="facts-note" data-i18n="demoShort"></p>
+  </aside>
+
+  <div class="pins" id="pins" hidden></div>
+  <div class="pin-card glass" id="pinCard" hidden></div>
+
+  <nav class="views glass" aria-label="Views">
+    <p class="views-head" data-i18n="viewsHead"></p>
+    <ul id="viewList"></ul>
+  </nav>
+
+  <a class="scroll-hint" href="#place" data-i18n="scroll"></a>
+</section>
+
+<main>
+  <section class="block" id="place">
+    <div class="block-in two">
+      <div>
+        <p class="kicker" data-i18n="placeKicker"></p>
+        <h2 data-i18n="placeTitle"></h2>
+        <p class="lead" data-i18n="placeText"></p>
+      </div>
+      <ul class="dist">
+        <li><b>3.5 km</b><span data-i18n="dSea"></span></li>
+        <li><b>15 km</b><span data-i18n="dBanus"></span></li>
+        <li><b>20 km</b><span data-i18n="dMarbella"></span></li>
+        <li><b>75 km</b><span data-i18n="dAirport"></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block alt" id="craft">
+    <div class="block-in">
+      <p class="kicker" data-i18n="craftKicker"></p>
+      <h2 data-i18n="craftTitle"></h2>
+      <div class="trio">
+        <figure><img src="img/detal-fasad.jpg" alt="" loading="lazy"><figcaption data-i18n="craft1"></figcaption></figure>
+        <figure><img src="img/detal-gostinaya.jpg" alt="" loading="lazy"><figcaption data-i18n="craft2"></figcaption></figure>
+        <figure><img src="img/detal-voda.jpg" alt="" loading="lazy"><figcaption data-i18n="craft3"></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="numbers">
+    <div class="block-in two">
+      <div>
+        <p class="kicker" data-i18n="calcKicker"></p>
+        <h2 data-i18n="calcTitle"></h2>
+        <p class="lead" data-i18n="calcText"></p>
+        <p class="demo-flag" data-i18n="demoLong"></p>
+      </div>
+      <div class="calc glass-light">
+        <label><span data-i18n="calcPrice"></span><output id="oPrice"></output>
+          <input type="range" id="rPrice" min="600000" max="3200000" step="50000" value="1250000"></label>
+        <label><span data-i18n="calcDown"></span><output id="oDown"></output>
+          <input type="range" id="rDown" min="20" max="70" step="5" value="30"></label>
+        <label><span data-i18n="calcYield"></span><output id="oYield"></output>
+          <input type="range" id="rYield" min="2" max="7" step="0.5" value="4.5"></label>
+        <div class="calc-out">
+          <div><small data-i18n="calcOutDown"></small><b id="resDown"></b></div>
+          <div><small data-i18n="calcOutRent"></small><b id="resRent"></b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block dark" id="contact">
+    <div class="block-in two">
+      <div>
+        <p class="kicker" data-i18n="contactKicker"></p>
+        <h2 data-i18n="contactTitle"></h2>
+        <p class="lead" data-i18n="contactText"></p>
+      </div>
+      <form class="form" id="form" novalidate>
+        <label><span data-i18n="fName"></span><input name="name" autocomplete="name" required></label>
+        <label><span data-i18n="fContact"></span><input name="contact" autocomplete="email" required></label>
+        <label><span data-i18n="fInterest"></span>
+          <select name="interest">
+            <option value="live" data-i18n="fOptLive"></option>
+            <option value="invest" data-i18n="fOptInvest"></option>
+          </select></label>
+        <button type="submit" class="cta solid" data-i18n="fSend"></button>
+        <p class="form-msg" id="formMsg" role="status"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>LA PERDIZ</span>
+  <span data-i18n="footNote"></span>
+</footer>
+
+<script src="app.js?v=19"></script>
+</body>
+</html>
